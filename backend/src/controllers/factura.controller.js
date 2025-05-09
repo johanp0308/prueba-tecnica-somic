@@ -24,7 +24,7 @@ export async function createFactura(req, res) {
     const id = await Factura.crearFactura(req.body);
     res.status(201).json({ message: 'Factura creada', id });
   } catch (error) {
-    res.status(500).json({ error: 'Error al crear factura' });
+    res.status(500).json({ error: 'Error al crear factura' + error });
   }
 }
 

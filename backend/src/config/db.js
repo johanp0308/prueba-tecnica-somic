@@ -4,10 +4,11 @@ import mysql from 'mysql2/promise';
 dotenv.config();
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
+  host: 'localhost',
+  user: 'root',
+  database: 'somic_prueba_pachon',
+  password: 'campus2023',
+  port: 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

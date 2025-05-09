@@ -22,7 +22,7 @@ export function desactivarSeccion(id) {
 
 export async function verificarFacturaExistente(idFactura) {
     const response = await fetch(`${host}/api/factura/${idFactura}`);
-    if (!response.ok) return false; // Si no la encuentra, está libre
+    if (!response.ok) return false; 
     const factura = await response.json();
     return factura != null;
 }
@@ -34,4 +34,9 @@ export async function verificarFacturaExistente(idFactura) {
 export function obtenerFechaHoy() {
     const hoy = new Date();
     return hoy.toISOString().split('T')[0];  // Devuelve en formato YYYY-MM-DD
+}
+
+
+export function cortarFecha(fecha) {
+    return fecha.toISOString().split('T')[0];
 }

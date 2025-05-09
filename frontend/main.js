@@ -6,9 +6,16 @@ import {
 } from "./js/functions.js";
 
 let naturaleza;
+
+let activar = true
+
 let d = document
 
 let objectDataSend = {};
+
+// Validaciones booleanos
+let fechaFacturaValidacion = false;
+let codigoFacturaValidacion = false;
 
 
 
@@ -42,6 +49,9 @@ document.querySelector('input').addEventListener('input', async (e) => {
 
     try {
 
+        const fechavencimiento = document.querySelector('#fecha-vencimiento');
+        fechavencimiento.disabled = true
+
         /**
          * Factura Seccion
          */
@@ -55,12 +65,15 @@ document.querySelector('input').addEventListener('input', async (e) => {
             e.preventDefault();
     
             if (await verificarFacturaExistente(codigoFactura.value)) {
+                console.clear();
                 console.log("La factura existe");
                 codigoFactura.classList.add('is-invalid');
                 if (mensajeError) {
                     mensajeError.style.display = 'block';
                 }
             } else {
+                console.clear();
+                codigoFacturaValidacion = true;
                 codigoFactura.classList.remove('is-invalid');
                 if (mensajeError) {
                     mensajeError.style.display = 'none';
@@ -77,17 +90,13 @@ document.querySelector('input').addEventListener('input', async (e) => {
                     mensajeFechaError.style.display = 'block'; 
                 }
             } else {
-                
+                fechaFacturaValidacion = true;
                 fechaFactura.classList.remove('is-invalid');
                 if (mensajeFechaError) {
                     mensajeFechaError.style.display = 'none'; 
                 }
             }
         }
-
-
-
-
     } catch (error) {
         console.error('Error durante la inicialización:', error);
     }
@@ -97,17 +106,23 @@ document.querySelector('input').addEventListener('input', async (e) => {
 
 
 
+
 document.addEventListener('click', (e) => {
     const target = e.target;
 
     // Verifica si el clic fue sobre un <select> y si es el de naturaleza
     if (target.tagName === 'SELECT' && target.id === 'naturalezaFactura') {
         const valor = target.value;
-
         // Si hay un valor válido, activa la sección factura
         if (valor === '+' || valor === '-') {
             activarSeccion('factura-seccion');
+            const fechavencimiento = document.querySelector('#fecha-vencimiento');
+            fechavencimiento.disabled = true
         }
+    }
+    console.log(target.tagName === 'BUTTON' && target.id === 'siguiente-cliente' && codigoFacturaValidacion & fechaFacturaValidacion)
+    if(target.tagName === 'BUTTON' && target.id === 'siguiente-cliente' && codigoFacturaValidacion & fechaFacturaValidacion ){
+        activarSeccion('cliente-seccion');
     }
 
 
