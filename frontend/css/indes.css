@@ -1,0 +1,40 @@
+body {
+    min-height: 100vh;
+    size: 10px;
+}
+
+.sidebar {
+    min-width: 220px;
+    height: 100vh;
+    background-color: #343a40;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+.content {
+    padding: 2rem;
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+main{
+    height: 100vh;
+}
