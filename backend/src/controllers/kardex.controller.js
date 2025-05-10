@@ -1,4 +1,4 @@
-import { obtenerKardexPorId, crearKardex } from '../models/factKardex.model.js';
+import * as Kardex from '../models/factKardex.model.js';
 
 export async function listarMovimientos(req, res) {
   try {
@@ -7,7 +7,7 @@ export async function listarMovimientos(req, res) {
      */
 
     const { codigoArticulo } = req.params;
-    const movimientos = await obtenerKardexPorId(codigoArticulo);
+    const movimientos = await Kardex.obtenerKardexPorId(codigoArticulo);
     res.json(movimientos);
   } catch (err) {
     res.status(500).json({ error: err.message });
