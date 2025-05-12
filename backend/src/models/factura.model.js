@@ -11,7 +11,7 @@ export async function obtenerFacturaPorId(id) {
 }
 
 export async function crearFactura(data) {
-  const { FACTCodigo, FACTFecha, FACTNaturaleza, FACTValorTotal, NITCodigo, ARTCodigo } = data;
+  const { FACTCodigo, FACTFecha, FACTNaturaleza, FACTValorTotal, NITCodigo } = data;
   const [result] = await pool.query(
     `INSERT INTO factura (FACTCodigo, FACTFecha, FACTNaturaleza, FACTValorTotal, NITCodigo)
      VALUES (?, ?, ?, ?, ?)`,
